@@ -8,11 +8,11 @@ use semver::{Comparator, Op, Version, VersionReq};
 use std::{fs, path::Path, sync::Arc};
 use wac_types::BorrowedPackageKey;
 use warg_client::{
-    storage::{ContentStorage, RegistryStorage},
-    Client, ClientError, Config, FileSystemClient, RegistryUrl,
+    storage::ContentStorage, Client, ClientError, Config, FileSystemClient, RegistryUrl,
 };
 use warg_credentials::keyring::get_auth_token;
 use warg_crypto::hash::AnyHash;
+use warg_protocol::registry::PackageName;
 
 /// Implemented by progress bars.
 ///
@@ -97,11 +97,21 @@ impl RegistryPackageResolver {
             }
 
             let mut tasks = FuturesUnordered::new();
-            for (index, hash) in missing.keys().enumerate() {
+            for (index, (hash, (_version, package_set))) in missing.iter().enumerate() {
                 let client = self.client.clone();
                 let hash = hash.clone();
+                let name = package_set.first().unwrap().name;
+                let registry_domain = client
+                    .get_warg_registry(PackageName::new(name).unwrap().namespace())
+                    .await
+                    .map_err(|err| Error::RegistryUpdateFailure { source: err.into() })?;
                 tasks.push(tokio::spawn(async move {
-                    Ok((index, client.download_content(&hash).await?))
+                    Ok((
+                        index,
+                        client
+                            .download_content(registry_domain.as_ref(), &hash)
+                            .await?,
+                    ))
                 }));
             }
 
@@ -161,36 +171,33 @@ impl RegistryPackageResolver {
 
             // Load the package from client storage to see if we already
             // have a matching version present.
-            if let Some(info) = self
-                .client
-                .registry()
-                .load_package(self.client.get_warg_registry(), &id)
-                .await
-                .map_err(|e| Error::PackageResolutionFailure {
-                    name: key.name.to_string(),
-                    span: *span,
-                    source: e,
-                })?
-            {
-                if let Some(version) = key.version {
-                    let req = VersionReq {
-                        comparators: vec![Comparator {
-                            op: Op::Exact,
-                            major: version.major,
-                            minor: Some(version.minor),
-                            patch: Some(version.patch),
-                            pre: version.pre.clone(),
-                        }],
-                    };
+            let info =
+                self.client
+                    .package(&id)
+                    .await
+                    .map_err(|e| Error::PackageResolutionFailure {
+                        name: key.name.to_string(),
+                        span: *span,
+                        source: e.into(),
+                    })?;
+            if let Some(version) = key.version {
+                let req = VersionReq {
+                    comparators: vec![Comparator {
+                        op: Op::Exact,
+                        major: version.major,
+                        minor: Some(version.minor),
+                        patch: Some(version.patch),
+                        pre: version.pre.clone(),
+                    }],
+                };
 
-                    // Version already present, no need to fetch the log
-                    if info.state.find_latest_release(&req).is_some() {
-                        log::debug!(
-                            "package log for `{name}` has a release version {version}",
-                            name = key.name
-                        );
-                        continue;
-                    }
+                // Version already present, no need to fetch the log
+                if info.state.find_latest_release(&req).is_some() {
+                    log::debug!(
+                        "package log for `{name}` has a release version {version}",
+                        name = key.name
+                    );
+                    continue;
                 }
             }
 
@@ -210,7 +217,7 @@ impl RegistryPackageResolver {
                 bar.println("Updating", "package logs from the registry");
             }
 
-            match self.client.upsert(fetch.keys()).await {
+            match self.client.fetch_packages(fetch.keys()).await {
                 Ok(_) => {
                     if let Some(bar) = self.bar.as_ref() {
                         bar.inc(1);
@@ -249,17 +256,15 @@ impl RegistryPackageResolver {
                         source: e,
                     })?;
 
-            let info = self
-                .client
-                .registry()
-                .load_package(self.client.get_warg_registry(), &id)
-                .await
-                .map_err(|e| Error::PackageResolutionFailure {
-                    name: key.name.to_string(),
-                    span: *span,
-                    source: e,
-                })?
-                .expect("package log should be present after fetching");
+            let info =
+                self.client
+                    .package(&id)
+                    .await
+                    .map_err(|e| Error::PackageResolutionFailure {
+                        name: key.name.to_string(),
+                        span: *span,
+                        source: e.into(),
+                    })?;
 
             let req = match key.version {
                 Some(v) => VersionReq {

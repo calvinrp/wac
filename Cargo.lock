@@ -776,6 +776,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "dialoguer"
+version = "0.11.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "658bce805d770f407bc62102fca7c2c64ceef2fbcb2b8bd19d2765ce093980de"
+dependencies = [
+ "console",
+ "shell-words",
+ "tempfile",
+ "thiserror",
+ "zeroize",
+]
+
+[[package]]
 name = "diff"
 version = "0.1.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3175,6 +3188,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "shell-words"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "24188a676b6ae68c3b2cb3a01be17fbf7240ce009799bb56d5b1409051e78fde"
+
+[[package]]
 name = "signal-hook-registry"
 version = "1.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3987,9 +4006,8 @@ dependencies = [
 
 [[package]]
 name = "warg-api"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "12bf1e22e1e396b98a2181219b06d1a49a3478c1b9d87a29cd9cd819d714e6c3"
+version = "0.5.0-dev"
+source = "git+https://github.com/bytecodealliance/registry?rev=b7ac8f0#b7ac8f0886f3b5d8e8911f4214851917b86d9e9f"
 dependencies = [
  "indexmap 2.2.6",
  "itertools 0.12.1",
@@ -4002,15 +4020,15 @@ dependencies = [
 
 [[package]]
 name = "warg-client"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d56cfaf9781ca2d084468bbdd8bbc1e35947bb2a19f8d3940d899852f6dd78aa"
+version = "0.5.0-dev"
+source = "git+https://github.com/bytecodealliance/registry?rev=b7ac8f0#b7ac8f0886f3b5d8e8911f4214851917b86d9e9f"
 dependencies = [
  "anyhow",
  "async-recursion",
  "async-trait",
  "bytes",
  "clap",
+ "dialoguer",
  "dirs",
  "futures-util",
  "indexmap 2.2.6",
@@ -4046,9 +4064,8 @@ dependencies = [
 
 [[package]]
 name = "warg-credentials"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "626224ba1a00965282b669d2611654fd6292a15396ed8c850ce91684678fe19f"
+version = "0.5.0-dev"
+source = "git+https://github.com/bytecodealliance/registry?rev=b7ac8f0#b7ac8f0886f3b5d8e8911f4214851917b86d9e9f"
 dependencies = [
  "anyhow",
  "indexmap 2.2.6",
@@ -4060,9 +4077,8 @@ dependencies = [
 
 [[package]]
 name = "warg-crypto"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d2a8c47e96a7f1903931b34db9a1f0d22bcb3761a203ee6861db686daaedcb4b"
+version = "0.5.0-dev"
+source = "git+https://github.com/bytecodealliance/registry?rev=b7ac8f0#b7ac8f0886f3b5d8e8911f4214851917b86d9e9f"
 dependencies = [
  "anyhow",
  "base64",
@@ -4081,9 +4097,8 @@ dependencies = [
 
 [[package]]
 name = "warg-protobuf"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ceed0e698efd0fab8bb747efd452156a65149eb389f7fe2a6b6b3ced4e25ab24"
+version = "0.5.0-dev"
+source = "git+https://github.com/bytecodealliance/registry?rev=b7ac8f0#b7ac8f0886f3b5d8e8911f4214851917b86d9e9f"
 dependencies = [
  "anyhow",
  "pbjson",
@@ -4100,9 +4115,8 @@ dependencies = [
 
 [[package]]
 name = "warg-protocol"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "69be98a2e9e0aeace7cbd62184b11462d259c5e391e6208d59506c9a2d33571c"
+version = "0.5.0-dev"
+source = "git+https://github.com/bytecodealliance/registry?rev=b7ac8f0#b7ac8f0886f3b5d8e8911f4214851917b86d9e9f"
 dependencies = [
  "anyhow",
  "base64",
@@ -4123,9 +4137,8 @@ dependencies = [
 
 [[package]]
 name = "warg-server"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "07f15457ced83df5c2298f225fc83b6700e93c7bf320a2e4ef01114c0b34d7ce"
+version = "0.5.0-dev"
+source = "git+https://github.com/bytecodealliance/registry?rev=b7ac8f0#b7ac8f0886f3b5d8e8911f4214851917b86d9e9f"
 dependencies = [
  "anyhow",
  "axum",
@@ -4154,9 +4167,8 @@ dependencies = [
 
 [[package]]
 name = "warg-transparency"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4d272b3002b9e5f6f636817089ba091e1ba7b85858e72529f96e24bc9827f530"
+version = "0.5.0-dev"
+source = "git+https://github.com/bytecodealliance/registry?rev=b7ac8f0#b7ac8f0886f3b5d8e8911f4214851917b86d9e9f"
 dependencies = [
  "anyhow",
  "indexmap 2.2.6",
