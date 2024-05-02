@@ -76,11 +76,11 @@ thiserror = "1.0.58"
 #warg-client = { path = "../../bytecodealliance/registry/crates/client" }
 #warg-credentials = { path = "../../bytecodealliance/registry/crates/credentials" }
 #warg-server = { path = "../../bytecodealliance/registry/crates/server" }
-warg-protocol = { git = "https://github.com/bytecodealliance/registry", rev = "b7ac8f0" }
-warg-crypto = { git = "https://github.com/bytecodealliance/registry", rev = "b7ac8f0" }
-warg-client = { git = "https://github.com/bytecodealliance/registry", rev = "b7ac8f0" }
-warg-credentials = { git = "https://github.com/bytecodealliance/registry", rev = "b7ac8f0" }
-warg-server = { git = "https://github.com/bytecodealliance/registry", rev = "b7ac8f0" }
+warg-protocol = { git = "https://github.com/bytecodealliance/registry", rev = "a6bf112" }
+warg-crypto = { git = "https://github.com/bytecodealliance/registry", rev = "a6bf112" }
+warg-client = { git = "https://github.com/bytecodealliance/registry", rev = "a6bf112" }
+warg-credentials = { git = "https://github.com/bytecodealliance/registry", rev = "a6bf112" }
+warg-server = { git = "https://github.com/bytecodealliance/registry", rev = "a6bf112" }
 #warg-client = "0.4.1"
 #warg-protocol = "0.4.1"
 #warg-crypto = "0.4.1"
