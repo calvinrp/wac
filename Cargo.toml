@@ -71,16 +71,11 @@ wat = "1.202.0"
 logos = "0.14.0"
 miette = "7.2.0"
 thiserror = "1.0.58"
-#warg-protocol = { path = "../../bytecodealliance/registry/crates/protocol" }
-#warg-crypto = { path = "../../bytecodealliance/registry/crates/crypto" }
-#warg-client = { path = "../../bytecodealliance/registry/crates/client" }
-#warg-credentials = { path = "../../bytecodealliance/registry/crates/credentials" }
-#warg-server = { path = "../../bytecodealliance/registry/crates/server" }
-warg-protocol = { git = "https://github.com/bytecodealliance/registry", rev = "478e8c3" }
-warg-crypto = { git = "https://github.com/bytecodealliance/registry", rev = "478e8c3" }
-warg-client = { git = "https://github.com/bytecodealliance/registry", rev = "478e8c3" }
-warg-credentials = { git = "https://github.com/bytecodealliance/registry", rev = "478e8c3" }
-warg-server = { git = "https://github.com/bytecodealliance/registry", rev = "478e8c3" }
+warg-protocol = { git = "https://github.com/bytecodealliance/registry", rev = "ac901b9" }
+warg-crypto = { git = "https://github.com/bytecodealliance/registry", rev = "ac901b9" }
+warg-client = { git = "https://github.com/bytecodealliance/registry", rev = "ac901b9" }
+warg-credentials = { git = "https://github.com/bytecodealliance/registry", rev = "ac901b9" }
+warg-server = { git = "https://github.com/bytecodealliance/registry", rev = "ac901b9" }
 #warg-client = "0.4.1"
 #warg-protocol = "0.4.1"
 #warg-crypto = "0.4.1"

@@ -1869,18 +1869,6 @@ dependencies = [
 
 [[package]]
 name = "miette"
-version = "5.10.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "59bb584eaeeab6bd0226ccf3509a69d7936d148cf3d036ad350abe35e8c6856e"
-dependencies = [
- "miette-derive 5.10.0",
- "once_cell",
- "thiserror",
- "unicode-width",
-]
-
-[[package]]
-name = "miette"
 version = "7.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4edc8853320c2a0dab800fbda86253c8938f6ea88510dc92c5f1ed20e794afc1"
@@ -1888,7 +1876,7 @@ dependencies = [
  "backtrace",
  "backtrace-ext",
  "cfg-if",
- "miette-derive 7.2.0",
+ "miette-derive",
  "owo-colors",
  "serde 1.0.197",
  "supports-color 3.0.0",
@@ -1898,17 +1886,6 @@ dependencies = [
  "textwrap",
  "thiserror",
  "unicode-width",
-]
-
-[[package]]
-name = "miette-derive"
-version = "5.10.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "49e7bc1560b95a3c4a25d03de42fe76ca718ab92d1a22a55b9b4cf67b3ae635c"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.57",
 ]
 
 [[package]]
@@ -2557,12 +2534,12 @@ dependencies = [
 
 [[package]]
 name = "prost-reflect"
-version = "0.12.0"
+version = "0.13.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "057237efdb71cf4b3f9396302a3d6599a92fa94063ba537b66130980ea9909f3"
+checksum = "6f5eec97d5d34bdd17ad2db2219aabf46b054c6c41bd5529767c9ce55be5898f"
 dependencies = [
- "logos 0.13.0",
- "miette 5.10.0",
+ "logos 0.14.0",
+ "miette",
  "once_cell",
  "prost",
  "prost-types",
@@ -2579,12 +2556,12 @@ dependencies = [
 
 [[package]]
 name = "protox"
-version = "0.5.1"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "00bb76c5f6221de491fe2c8f39b106330bbd9762c6511119c07940e10eb9ff11"
+checksum = "a29b3c5596eb23a849deba860b53ffd468199d9ad5fe4402a7d55379e16aa2d2"
 dependencies = [
  "bytes",
- "miette 5.10.0",
+ "miette",
  "prost",
  "prost-reflect",
  "prost-types",
@@ -2594,12 +2571,12 @@ dependencies = [
 
 [[package]]
 name = "protox-parse"
-version = "0.5.0"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7b4581f441c58863525a3e6bec7b8de98188cf75239a56c725a3e7288450a33f"
+checksum = "033b939d76d358f7c32120c86c71f515bae45e64f2bde455200356557276276c"
 dependencies = [
  "logos 0.13.0",
- "miette 5.10.0",
+ "miette",
  "prost-types",
  "thiserror",
 ]
@@ -3869,7 +3846,7 @@ dependencies = [
  "indexmap 2.2.6",
  "indicatif",
  "log",
- "miette 7.2.0",
+ "miette",
  "owo-colors",
  "pretty_env_logger",
  "semver",
@@ -3918,7 +3895,7 @@ dependencies = [
  "indexmap 2.2.6",
  "log",
  "logos 0.14.0",
- "miette 7.2.0",
+ "miette",
  "owo-colors",
  "pretty_assertions",
  "pretty_env_logger",
@@ -3944,7 +3921,7 @@ dependencies = [
  "futures",
  "indexmap 2.2.6",
  "log",
- "miette 7.2.0",
+ "miette",
  "pretty_assertions",
  "secrecy",
  "semver",
@@ -4007,7 +3984,7 @@ dependencies = [
 [[package]]
 name = "warg-api"
 version = "0.5.0-dev"
-source = "git+https://github.com/bytecodealliance/registry?rev=478e8c3#478e8c3b0480093027f01376b61cee8916b7719f"
+source = "git+https://github.com/bytecodealliance/registry?rev=ac901b9#ac901b93ea5ae3aec9b23a50136670bc0e07c1b8"
 dependencies = [
  "indexmap 2.2.6",
  "itertools 0.12.1",
@@ -4021,7 +3998,7 @@ dependencies = [
 [[package]]
 name = "warg-client"
 version = "0.5.0-dev"
-source = "git+https://github.com/bytecodealliance/registry?rev=478e8c3#478e8c3b0480093027f01376b61cee8916b7719f"
+source = "git+https://github.com/bytecodealliance/registry?rev=ac901b9#ac901b93ea5ae3aec9b23a50136670bc0e07c1b8"
 dependencies = [
  "anyhow",
  "async-recursion",
@@ -4065,7 +4042,7 @@ dependencies = [
 [[package]]
 name = "warg-credentials"
 version = "0.5.0-dev"
-source = "git+https://github.com/bytecodealliance/registry?rev=478e8c3#478e8c3b0480093027f01376b61cee8916b7719f"
+source = "git+https://github.com/bytecodealliance/registry?rev=ac901b9#ac901b93ea5ae3aec9b23a50136670bc0e07c1b8"
 dependencies = [
  "anyhow",
  "indexmap 2.2.6",
@@ -4078,7 +4055,7 @@ dependencies = [
 [[package]]
 name = "warg-crypto"
 version = "0.5.0-dev"
-source = "git+https://github.com/bytecodealliance/registry?rev=478e8c3#478e8c3b0480093027f01376b61cee8916b7719f"
+source = "git+https://github.com/bytecodealliance/registry?rev=ac901b9#ac901b93ea5ae3aec9b23a50136670bc0e07c1b8"
 dependencies = [
  "anyhow",
  "base64",
@@ -4098,7 +4075,7 @@ dependencies = [
 [[package]]
 name = "warg-protobuf"
 version = "0.5.0-dev"
-source = "git+https://github.com/bytecodealliance/registry?rev=478e8c3#478e8c3b0480093027f01376b61cee8916b7719f"
+source = "git+https://github.com/bytecodealliance/registry?rev=ac901b9#ac901b93ea5ae3aec9b23a50136670bc0e07c1b8"
 dependencies = [
  "anyhow",
  "pbjson",
@@ -4116,7 +4093,7 @@ dependencies = [
 [[package]]
 name = "warg-protocol"
 version = "0.5.0-dev"
-source = "git+https://github.com/bytecodealliance/registry?rev=478e8c3#478e8c3b0480093027f01376b61cee8916b7719f"
+source = "git+https://github.com/bytecodealliance/registry?rev=ac901b9#ac901b93ea5ae3aec9b23a50136670bc0e07c1b8"
 dependencies = [
  "anyhow",
  "base64",
@@ -4138,7 +4115,7 @@ dependencies = [
 [[package]]
 name = "warg-server"
 version = "0.5.0-dev"
-source = "git+https://github.com/bytecodealliance/registry?rev=478e8c3#478e8c3b0480093027f01376b61cee8916b7719f"
+source = "git+https://github.com/bytecodealliance/registry?rev=ac901b9#ac901b93ea5ae3aec9b23a50136670bc0e07c1b8"
 dependencies = [
  "anyhow",
  "axum",
@@ -4168,7 +4145,7 @@ dependencies = [
 [[package]]
 name = "warg-transparency"
 version = "0.5.0-dev"
-source = "git+https://github.com/bytecodealliance/registry?rev=478e8c3#478e8c3b0480093027f01376b61cee8916b7719f"
+source = "git+https://github.com/bytecodealliance/registry?rev=ac901b9#ac901b93ea5ae3aec9b23a50136670bc0e07c1b8"
 dependencies = [
  "anyhow",
  "indexmap 2.2.6",
