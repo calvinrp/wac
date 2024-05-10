@@ -86,6 +86,12 @@ pub struct PlugCommand {
     #[clap(long, short = 'o')]
     pub output: Option<PathBuf>,
 
+    /// The package name and version as `namespace:package-name@0.1.0` for publishing to the
+    /// registry.
+    #[cfg(feature = "registry")]
+    #[clap(long, short = 'p')]
+    pub publish: Option<PackageRef>,
+
     /// The URL of the registry to use.
     #[cfg(feature = "registry")]
     #[clap(long, value_name = "URL")]
@@ -264,6 +270,28 @@ impl PlugCommand {
                 }
             }
         }
+
+        #[cfg(feature = "registry")]
+        if let Some(PackageRef::RegistryPackage((name, version))) = &self.publish {
+            let version = version.ok_or_else(|| {
+                anyhow::anyhow!("publish version is required in the format: `namespace:package-name@0.1.0`")
+            })?;
+            let client = client.as_ref().ok_or_else(|| {
+                anyhow::anyhow!(
+                    "Warg registry is not configured. Package `{name}` was not found."
+                )
+            })?;
+
+            // store in Warg content cache
+            let digest = client.content().store_content(tokio_util::io::ReaderStream::new(&bytes).boxed()).await?;
+
+            // publish
+            let signing_key = warg_client::keyring::get_signing_key(
+                Some(&client.url().registry_domain().to_string()),
+
+            client.
+        }
+        
         Ok(())
     }
 }
